@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { app, auth } from "../firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { useEffect } from "react";
-import { List } from "@mui/material";
+import { IconButton, List } from "@mui/material";
 import { ListItem } from "@mui/material";
 import { ListItemText } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 export default function MyJokes() {
     const db = getFirestore(app);
@@ -35,12 +37,21 @@ export default function MyJokes() {
         }
     }
 
+    const handleDelete = async (id) => {
+        await deleteDoc(doc(db, "jokes" + user, id));
+        handleGetJokes(user);
+    }
+
     return (
         <>
             <h1>My Jokes</h1>
             <List>
-                {jokes.map((joke, index) => (
-                    <ListItem key={index}>
+                {jokes.map((joke) => (
+                    <ListItem key={joke.id} secondaryAction={
+                        <IconButton color="primary" edge="end" aria-label="delete" onClick={() => handleDelete(joke.id)}>
+                            <DeleteIcon />
+                        </IconButton>
+                    }>
                         <ListItemText primary={joke.joke} />
                     </ListItem>
                 ))}
