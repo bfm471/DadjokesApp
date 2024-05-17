@@ -1,12 +1,12 @@
 import { Link, Outlet } from 'react-router-dom';
+import './App.css';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <nav>
-        <Link to={"/"}>Home</Link>
-        <Link to={"/about"}>About</Link>
-        <Link to={"/contact"}>Contact</Link>
+        <Link to={"/"}>RandomJoke</Link>
+        <Link to={"/myjokes"}>Myjokes</Link>
       </nav>
       <Outlet />
     </div>

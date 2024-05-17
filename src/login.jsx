@@ -16,7 +16,7 @@ export default function Login() {
       .then((userCredential) => {
          
         const user = userCredential.user;
-        navigate("/root");
+        navigate("/");
         // ...
       })
       .catch((error) => {
