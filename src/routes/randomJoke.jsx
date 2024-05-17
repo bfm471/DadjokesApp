@@ -46,13 +46,12 @@ export default function RandomJoke() {
 
     return (
         <>
-            <h1>Dadjokes</h1>
+            <h1>Dad Jokes</h1>
             <p>Get yours now</p>
             <p><Button variant="outlined" onClick={getRandomJoke}>Random joke</Button></p>
             {joke && <p>{joke}</p>}
-            <p><Button variant='text' onClick={handleSave}>Like this joke? Save it for later!</Button></p>
-            { added &&
-            <p>Saved!</p>}
+            {joke && <p><Button variant='text' onClick={handleSave}>Like this joke? Save it for later!</Button></p>}
+            {added &&<p>Saved!</p>}
         </>
     );
 }
