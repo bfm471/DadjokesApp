@@ -13,7 +13,6 @@ export default function RandomJoke() {
         .then(response => response.json())
         .then(data => {
             setJoke(data.joke)
-            console.log(data)
         })
         .catch(error => console.error(error))
     }
@@ -21,11 +20,9 @@ export default function RandomJoke() {
     return (
       <>
         <h1>Dadjokes</h1>
-        <p>
-            Get yours now
+        <p>Get yours now</p>
             <p><Button variant="outlined" onClick={getRandomJoke}>Random joke</Button></p>
             {joke && <p>{joke}</p>}
-        </p>
       </>
     );
 }

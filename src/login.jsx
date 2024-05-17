@@ -1,71 +1,52 @@
-import { useState, FormEvent } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebaseConfig";
-import TextField from '@mui/material/TextField';
+import { useState } from "react";
+import { TextField, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 
-function LoginForm() {
+export default function Login() {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showMsg, setShowMsg] = useState(false);
-  const [msg, setMsg] = useState('');
-  const [_, setUser] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleLogin = async (FormEvent) => {
-    // e.preventDefault();
-    try {
-      await signInWithEmailAndPassword(auth, email, password)
+  const login = () => {
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+         
         const user = userCredential.user;
-        setUser(user.email);
+        navigate("/root");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorCode, errorMessage);
       });
-      console.log("Kirjautuminen onnistui");
-      setMsg("Kirjautuneena " + email)
-    } catch (error) {
-      console.log("Kirjautuminen epäonnistui", error);
-      setMsg("Kirjautuminen epäonnistui")
-    }
-    setEmail('');
-    setPassword('');
-    setShowMsg(true);
   }
 
-  console.log("MOI", email, password, msg)
+  // console.log(email);
 
   return (
-    <div>
-      <h2>Kirjaudu sisään</h2>
-      {showMsg &&
-        <h4>{msg}</h4>
-      }
-      <form onSubmit={handleLogin}>
-        <div>
-          <TextField
-            id="email"
-            type="email"
-            label="Email"
-            variant="outlined"
-            value={email}
-            onChange={event => setEmail(event.target.value)}
-            onFocus={() => setShowMsg(false)}
-            required
-          />
-          <br />
-          <TextField
-            id="password"
-            type="password"
-            label="Password"
-            variant="outlined"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Kirjaudu sisään</button>
-      </form>
-    </div>
-  );
+    <>
+      <TextField
+        id="email"
+        type="email"
+        label="Email"
+        value={email}
+        required
+        onChange={(event) => setEmail(event.target.value)}
+      />
+      <TextField
+        id="password"
+        type="password"
+        label="Password"
+        value={password}
+        required
+        onChange={(event) => setPassword(event.target.value)}
+      />
+      <Button onClick={login}>Kirjaudu</Button>
+    </>
+  )
 }
-
-export default LoginForm;
