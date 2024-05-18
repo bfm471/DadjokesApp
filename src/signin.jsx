@@ -1,18 +1,18 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword  } from "firebase/auth";
 import { auth } from "./firebaseConfig";
 import { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 
-export default function Login() {
+export default function Signin() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const login = () => {
-    signInWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword (auth, email, password)
       .then((userCredential) => {
          
         const user = userCredential.user;
@@ -49,7 +49,7 @@ export default function Login() {
         onChange={(event) => setPassword(event.target.value)}
       />
       </p>
-      <Button onClick={login}>Log In</Button>
+      <Button onClick={login}>Register</Button>
     </>
   )
 }

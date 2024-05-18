@@ -7,7 +7,9 @@ import {
 import App from './App.jsx'
 import './index.css'
 import ErrorPage from './errorPage.jsx';
+import Loginscreen from './Loginscreen.jsx';
 import Login from './login.jsx';
+import Signin from './signin.jsx';
 import RandomJoke from './routes/randomJoke.jsx';
 import MyJokes from './routes/myJokes.jsx';
 
@@ -25,12 +27,23 @@ const router = createBrowserRouter([
         path: "myjokes",
         element: <MyJokes />
       },
-      {
-        path:"login",
-        element: <Login />
-      }
     ]
     },
+    {
+      path: "/login",
+      element: <Loginscreen />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          element: <Login />,
+          index: true
+        },
+        {
+          path: "signin",
+          element: <Signin />,
+        },
+      ]
+    }
     
 
 ]);
