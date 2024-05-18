@@ -19,6 +19,8 @@ export default function MyJokes() {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user.uid);
+            } else {
+                navigate("/login");
             }
         })
         handleGetJokes(user);

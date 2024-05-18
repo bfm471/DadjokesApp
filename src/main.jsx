@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import App from './App.jsx'
 import './index.css'
-// import Root from './routes/root.jsx';
 import ErrorPage from './errorPage.jsx';
 import Login from './login.jsx';
 import RandomJoke from './routes/randomJoke.jsx';
@@ -25,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "myjokes",
         element: <MyJokes />
+      },
+      {
+        path:"login",
+        element: <Login />
       }
     ]
     },

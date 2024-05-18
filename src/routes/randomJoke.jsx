@@ -3,21 +3,24 @@ import { Button } from "@mui/material";
 import { app, auth } from '../firebaseConfig';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-
+import { useNavigate } from 'react-router-dom';
 
 export default function RandomJoke() {
     const db = getFirestore(app);
     const [joke, setJoke] = useState('');
     const [user, setUser] = useState('');
     const [added, setAdded] =useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user.uid);
+            } else {
+                navigate("/login");
             }
         })
-    }, []);
+    }, [user]);
 
     const getRandomJoke = () => {
         setAdded(false);
