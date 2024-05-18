@@ -9,7 +9,7 @@ export default function Logout() {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        navigate("/");
+        navigate("/login");
       })
       .catch((error) => {
         console.error("Error logging out: ", error);

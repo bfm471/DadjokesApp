@@ -17,8 +17,6 @@ export default function RandomJoke() {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user.uid);
-            } else {
-                navigate("/login");
             }
         })
     }, [user]);
