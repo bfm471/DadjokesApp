@@ -9,6 +9,10 @@ export default function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState({ 
+    error: false,
+    msg: ''
+  });
   const navigate = useNavigate();
 
   const login = () => {
@@ -21,14 +25,18 @@ export default function Login() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error(errorCode, errorMessage);
+        setError({ error: true, msg: "Check email and password!" })
+        setEmail('');
+        setPassword('');
       });
   }
 
 
   return (
     <>
-    <p>
+      {error.error &&
+      <p>{error.msg}</p>
+      }
       <TextField
         id="email"
         type="email"
@@ -36,6 +44,7 @@ export default function Login() {
         value={email}
         required
         onChange={(event) => setEmail(event.target.value)}
+        onFocus={() => setError('')}
       />
       <br />
       <TextField
@@ -46,8 +55,7 @@ export default function Login() {
         required
         onChange={(event) => setPassword(event.target.value)}
       />
-      </p>
-      <Button onClick={login}>Log In</Button>
+      <p><Button onClick={login}>Log In</Button></p>
     </>
   )
 }
