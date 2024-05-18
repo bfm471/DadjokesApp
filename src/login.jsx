@@ -3,7 +3,7 @@ import { auth } from "./firebaseConfig";
 import { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
+import './App.css';
 
 export default function Login() {
 
@@ -35,27 +35,29 @@ export default function Login() {
   return (
     <>
       {error.error &&
-      <p>{error.msg}</p>
+        <p>{error.msg}</p>
       }
-      <TextField
-        id="email"
-        type="email"
-        label="Email"
-        value={email}
-        required
-        onChange={(event) => setEmail(event.target.value)}
-        onFocus={() => setError('')}
-      />
-      <br />
-      <TextField
-        id="password"
-        type="password"
-        label="Password"
-        value={password}
-        required
-        onChange={(event) => setPassword(event.target.value)}
-      />
-      <p><Button onClick={login}>Log In</Button></p>
+      <div className="text-field">
+        <TextField
+          id="email"
+          type="email"
+          label="Email"
+          value={email}
+          required
+          onChange={(event) => setEmail(event.target.value)}
+          onFocus={() => setError('')}
+        />
+        <br />
+        <TextField
+          id="password"
+          type="password"
+          label="Password"
+          value={password}
+          required
+          onChange={(event) => setPassword(event.target.value)}
+        />
+      </div>
+      <Button variant="outlined" onClick={login}>Log In</Button>
     </>
   )
 }

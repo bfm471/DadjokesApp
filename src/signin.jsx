@@ -28,26 +28,26 @@ export default function Signin() {
 
   return (
     <>
-    <p>
-      <TextField
-        id="email"
-        type="email"
-        label="Email"
-        value={email}
-        required
-        onChange={(event) => setEmail(event.target.value)}
-      />
-      <br />
-      <TextField
-        id="password"
-        type="password"
-        label="Password"
-        value={password}
-        required
-        onChange={(event) => setPassword(event.target.value)}
-      />
-      </p>
-      <Button onClick={login}>Register</Button>
+      <div className="text-field">
+        <TextField
+          id="email"
+          type="email"
+          label="Email"
+          value={email}
+          required
+          onChange={(event) => setEmail(event.target.value)}
+        />
+        <br />
+        <TextField
+          id="password"
+          type="password"
+          label="Password"
+          value={password}
+          required
+          onChange={(event) => setPassword(event.target.value)}
+        />
+      </div>
+      <Button variant="outlined" onClick={login}>Register</Button>
     </>
   )
 }
