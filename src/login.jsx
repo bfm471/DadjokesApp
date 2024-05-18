@@ -17,7 +17,6 @@ export default function Login() {
          
         const user = userCredential.user;
         navigate("/");
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -26,7 +25,6 @@ export default function Login() {
       });
   }
 
-  // console.log(email);
 
   return (
     <>
