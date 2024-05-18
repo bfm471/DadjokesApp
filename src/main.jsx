@@ -44,9 +44,9 @@ const router = createBrowserRouter([
         },
       ]
     }
-    
-
-]);
+], {
+  basename: "/DadjokesApp"
+});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
