@@ -4,6 +4,7 @@ import { app, auth } from '../firebaseConfig';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import Logout from '../logOut';
 
 export default function RandomJoke() {
     const db = getFirestore(app);
@@ -55,6 +56,7 @@ export default function RandomJoke() {
             {joke && <p>{joke}</p>}
             {joke && <p><Button variant='text' onClick={handleSave}>Like this joke? Save it for later!</Button></p>}
             {added &&<p>Saved!</p>}
+            <Logout />
         </>
     );
 }

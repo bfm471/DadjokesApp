@@ -7,6 +7,8 @@ import { IconButton, List } from "@mui/material";
 import { ListItem } from "@mui/material";
 import { ListItemText } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from "react-router-dom";
+import Logout from "../logOut";
 
 
 export default function MyJokes() {
@@ -14,6 +16,7 @@ export default function MyJokes() {
 
     const [jokes, setJokes] = useState([]);
     const [user, setUser] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -58,6 +61,7 @@ export default function MyJokes() {
                     </ListItem>
                 ))}
             </List>
+            <Logout />
         </>
     );
 }
